@@ -58,6 +58,10 @@ public:
 	CPoint second_chartRB;
 	CPoint third_chartLT;
 	CPoint third_chartRB;
+	int t_row;
+	int t_column;
+	int Length_row(CPoint m_Lefttop, CPoint m_Rightbottom);
+	int Length_column(CPoint m_Lefttop, CPoint m_Rightbottom);
 };
 
 #ifndef _DEBUG  // table_chartView.cpp의 디버그 버전

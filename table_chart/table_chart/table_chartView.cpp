@@ -31,6 +31,7 @@ BEGIN_MESSAGE_MAP(CtablechartView, CView)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
+	ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
 
 // CtablechartView 생성/소멸
@@ -63,15 +64,6 @@ void CtablechartView::OnDraw(CDC* pDC)
 		return;
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
-	/*pDC->TextOutW(200, 200, L"Just type 's' to get started", 28);
-	if (sta == 's') {
-		//pDC->Rectangle(50, 50, 1000, 600);
-		pDC->TextOutW(200, 200, L"type 't' to get started table drawing", 37);
-		if (sta == 't') {
-			pDC->Rectangle(m_Lefttop.x, m_Lefttop.y,
-				m_Rightbottom.x, m_Rightbottom.y);
-		}
-	}*/
 	pDC->TextOutW(200, 200, L"just type 's' to get started");
 	switch (sta) {
 	case 's':
@@ -81,21 +73,105 @@ void CtablechartView::OnDraw(CDC* pDC)
 	case 't':
 		pDC->Rectangle(m_Lefttop.x, m_Lefttop.y,
 			m_Rightbottom.x, m_Rightbottom.y);
-		for (int i = 0; i < 4; i++) {
-			m_startrow.x = m_Lefttop.x;
-			m_startrow.y = (m_Rightbottom.y - m_Lefttop.y) * 0.25 * i + m_Lefttop.y;
-			m_endrow.x = m_Rightbottom.x;
-			m_endrow.y = m_startrow.y;
-			pDC->MoveTo(m_startrow);
-			pDC->LineTo(m_endrow);
+		if (t_row <= 100) {
+			for (int i = 0; i < 2; i++) {
+				m_startrow.x = m_Lefttop.x;
+				m_startrow.y = (m_Rightbottom.y - m_Lefttop.y) * 0.5 * i + m_Lefttop.y;
+				m_endrow.x = m_Rightbottom.x;
+				m_endrow.y = m_startrow.y;
+				pDC->MoveTo(m_startrow);
+				pDC->LineTo(m_endrow);
+			}
 		}
-		for (int k = 0; k < 4; k++) {
-			m_startcolumn.x = (m_Rightbottom.x - m_Lefttop.x) * 0.25 * k + m_Lefttop.x;
-			m_startcolumn.y = m_Lefttop.y;
-			m_endcolumn.x = m_startcolumn.x;
-			m_endcolumn.y = m_Rightbottom.y;
-			pDC->MoveTo(m_startcolumn);
-			pDC->LineTo(m_endcolumn);
+		else if (t_row > 100 && t_row <= 150) {
+			for (int i = 0; i < 3; i++) {
+				m_startrow.x = m_Lefttop.x;
+				m_startrow.y = (m_Rightbottom.y - m_Lefttop.y) * 0.33 * i + m_Lefttop.y;
+				m_endrow.x = m_Rightbottom.x;
+				m_endrow.y = m_startrow.y;
+				pDC->MoveTo(m_startrow);
+				pDC->LineTo(m_endrow);
+			}
+		}
+		else if (t_row > 150 && t_row <= 250) {
+			for (int i = 0; i < 4; i++) {
+				m_startrow.x = m_Lefttop.x;
+				m_startrow.y = (m_Rightbottom.y - m_Lefttop.y) * 0.25 * i + m_Lefttop.y;
+				m_endrow.x = m_Rightbottom.x;
+				m_endrow.y = m_startrow.y;
+				pDC->MoveTo(m_startrow);
+				pDC->LineTo(m_endrow);
+			}
+		}
+		else if (t_row > 250 && t_row <= 350) {
+			for (int i = 0; i < 5; i++) {
+				m_startrow.x = m_Lefttop.x;
+				m_startrow.y = (m_Rightbottom.y - m_Lefttop.y) * 0.2 * i + m_Lefttop.y;
+				m_endrow.x = m_Rightbottom.x;
+				m_endrow.y = m_startrow.y;
+				pDC->MoveTo(m_startrow);
+				pDC->LineTo(m_endrow);
+			}
+		}
+		else if (t_row > 350) {
+			for (int i = 0; i < 6; i++) {
+				m_startrow.x = m_Lefttop.x;
+				m_startrow.y = (m_Rightbottom.y - m_Lefttop.y) * 0.167 * i + m_Lefttop.y;
+				m_endrow.x = m_Rightbottom.x;
+				m_endrow.y = m_startrow.y;
+				pDC->MoveTo(m_startrow);
+				pDC->LineTo(m_endrow);
+			}
+		}
+		if (t_column <= 230) {
+			for (int k = 0; k < 2; k++) {
+				m_startcolumn.x = (m_Rightbottom.x - m_Lefttop.x) * 0.5 * k + m_Lefttop.x;
+				m_startcolumn.y = m_Lefttop.y;
+				m_endcolumn.x = m_startcolumn.x;
+				m_endcolumn.y = m_Rightbottom.y;
+				pDC->MoveTo(m_startcolumn);
+				pDC->LineTo(m_endcolumn);
+			}
+		}
+		else if (t_column > 230 && t_column <= 400) {
+			for (int k = 0; k < 3; k++) {
+				m_startcolumn.x = (m_Rightbottom.x - m_Lefttop.x) * 0.33 * k + m_Lefttop.x;
+				m_startcolumn.y = m_Lefttop.y;
+				m_endcolumn.x = m_startcolumn.x;
+				m_endcolumn.y = m_Rightbottom.y;
+				pDC->MoveTo(m_startcolumn);
+				pDC->LineTo(m_endcolumn);
+			}
+		}
+		else if (t_column > 400 && t_column <= 600) {
+			for (int k = 0; k < 4; k++) {
+				m_startcolumn.x = (m_Rightbottom.x - m_Lefttop.x) * 0.25 * k + m_Lefttop.x;
+				m_startcolumn.y = m_Lefttop.y;
+				m_endcolumn.x = m_startcolumn.x;
+				m_endcolumn.y = m_Rightbottom.y;
+				pDC->MoveTo(m_startcolumn);
+				pDC->LineTo(m_endcolumn);
+			}
+		}
+		else if (t_column > 600 && t_column <= 800) {
+			for (int k = 0; k < 5; k++) {
+				m_startcolumn.x = (m_Rightbottom.x - m_Lefttop.x) * 0.2 * k + m_Lefttop.x;
+				m_startcolumn.y = m_Lefttop.y;
+				m_endcolumn.x = m_startcolumn.x;
+				m_endcolumn.y = m_Rightbottom.y;
+				pDC->MoveTo(m_startcolumn);
+				pDC->LineTo(m_endcolumn);
+			}
+		}
+		else if (t_column > 800) {
+			for (int k = 0; k < 6; k++) {
+				m_startcolumn.x = (m_Rightbottom.x - m_Lefttop.x) * 0.167 * k + m_Lefttop.x;
+				m_startcolumn.y = m_Lefttop.y;
+				m_endcolumn.x = m_startcolumn.x;
+				m_endcolumn.y = m_Rightbottom.y;
+				pDC->MoveTo(m_startcolumn);
+				pDC->LineTo(m_endcolumn);
+			}
 		}
 		break;
 	case 'c':
@@ -213,7 +289,22 @@ void CtablechartView::OnMouseMove(UINT nFlags, CPoint point)
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (nFlags & MK_LBUTTON) {
 		m_Rightbottom = point;
+		t_row = Length_row(m_Lefttop, m_Rightbottom);
+		t_column = Length_column(m_Lefttop, m_Rightbottom);
 		Invalidate();
 	}
 	CView::OnMouseMove(nFlags, point);
+}
+
+int CtablechartView::Length_row(CPoint m_Lefttop, CPoint m_Rightbottom)
+{
+	// TODO: 여기에 구현 코드 추가.
+	return (m_Rightbottom.y - m_Lefttop.y);
+}
+
+
+int CtablechartView::Length_column(CPoint m_Lefttop, CPoint m_Rightbottom)
+{
+	// TODO: 여기에 구현 코드 추가.
+	return (m_Rightbottom.x - m_Lefttop.x);
 }

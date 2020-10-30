@@ -67,6 +67,7 @@ void CtablechartView::OnDraw(CDC* pDC)
 	pDC->TextOutW(200, 200, L"just type 's' to get started");
 	switch (sta) {
 	case 's':
+		pDC->TextOutW(200, 180, L"Hello, drawing table and chart");
 		pDC->TextOutW(200, 200, L"just type 't' to get started drawing table");
 		pDC->TextOutW(200, 220, L"just type 'c' to get started drawing chart");
 		break;

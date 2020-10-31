@@ -300,12 +300,27 @@ void CtablechartView::OnMouseMove(UINT nFlags, CPoint point)
 int CtablechartView::Length_row(CPoint m_Lefttop, CPoint m_Rightbottom)
 {
 	// TODO: 여기에 구현 코드 추가.
-	return (m_Rightbottom.y - m_Lefttop.y);
+	int row = 0;
+	if (m_Lefttop.y < m_Rightbottom.y) {
+		row = m_Rightbottom.y - m_Lefttop.y;
+	}
+	else {
+		row = m_Lefttop.y - m_Rightbottom.y;
+	}
+	
+	return (row);
 }
 
 
 int CtablechartView::Length_column(CPoint m_Lefttop, CPoint m_Rightbottom)
 {
 	// TODO: 여기에 구현 코드 추가.
-	return (m_Rightbottom.x - m_Lefttop.x);
+	int column = 0;
+	if (m_Lefttop.x < m_Rightbottom.x) {
+		column = m_Rightbottom.x - m_Lefttop.x;
+	}
+	else {
+		column = m_Lefttop.x - m_Rightbottom.x;
+	}
+	return (column);
 }
